@@ -17,7 +17,6 @@ class Main {
       bufferedReader.close();
       showMap(map);
       ChunkFiller filler = new ChunkFiller(map, 2, 1);
-      System.out.println("START: " + map[2][1].getVal());
       filler.run();
       showMap(filler.getResult());
     } catch (Exception e){
