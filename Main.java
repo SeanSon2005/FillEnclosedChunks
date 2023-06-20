@@ -12,20 +12,29 @@ class Main {
       for(int y = 0; y < map_height; y++){
         String line = bufferedReader.readLine();
         for (int x = 0; x < map_length; x++){
-          Chunk temp = map[x][y];
-          //temp.setVal(1);
+          map[x][y] = new Chunk(Character.getNumericValue(line.charAt(x)));
         }
-        System.out.println(line);
       }
       bufferedReader.close();
+      showMap(map);
     } catch (Exception e){
-      System.out.println("bro what");
+      System.out.println("naw");
     }
   }
-  public static void showMap(List<List<Chunk>> map){
-    for (List<Chunk> chunkList : map) {
-      for (Chunk chunk: chunkList){
-        System.out.print(chunk.getVal() + " ");
+  public static void showMap(Chunk[][] map){
+    for (int y = 0; y < map_height; y++) {
+      for (int x = 0; x < map_length; x++){
+        int a = map[x][y].getVal();
+        switch(a){
+          case 0:
+            System.out.print("  ");
+            break;
+          case 1:
+            System.out.print("[]");
+            break;
+          default:
+            break;
+        }
       }
       System.out.println();
     }
