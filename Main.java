@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.List;
 
 class Main {
   private static int map_length = 10;
@@ -17,8 +16,12 @@ class Main {
       }
       bufferedReader.close();
       showMap(map);
+      ChunkFiller filler = new ChunkFiller(map, 2, 1);
+      System.out.println("START: " + map[2][1].getVal());
+      filler.run();
+      showMap(filler.getResult());
     } catch (Exception e){
-      System.out.println("naw");
+      System.out.println(e);
     }
   }
   public static void showMap(Chunk[][] map){
