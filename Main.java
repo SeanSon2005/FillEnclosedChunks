@@ -2,8 +2,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 class Main {
-  private static int map_length = 10;
-  private static int map_height = 10;
+  private static int map_length = 20;
+  private static int map_height = 20;
   public static void main(String[] args) {
     int[][] map = new int[map_length][map_height];
     try{
@@ -33,12 +33,10 @@ class Main {
         int a = map[x][y];
         switch(a){
           case 0:
-            System.out.print("  ");
-            break;
-          case 1:
-            System.out.print("[]");
+            System.out.print("   ");
             break;
           default:
+            System.out.print("[" + map[x][y]+ "]");
             break;
         }
       }
