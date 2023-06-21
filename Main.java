@@ -5,28 +5,32 @@ class Main {
   private static int map_length = 10;
   private static int map_height = 10;
   public static void main(String[] args) {
-    Chunk[][] map = new Chunk[map_length][map_height];
+    int[][] map = new int[map_length][map_height];
     try{
-      BufferedReader bufferedReader = new BufferedReader(new FileReader("map.in"));
-      for(int y = 0; y < map_height; y++){
+      ChunkFiller filler = new ChunkFiller(map);
+      BufferedReader bufferedReader = new BufferedReader(new FileReader("updates.in"));
+      while(true){
         String line = bufferedReader.readLine();
-        for (int x = 0; x < map_length; x++){
-          map[x][y] = new Chunk(Character.getNumericValue(line.charAt(x)));
+        if (line == null){
+          break;
         }
+        String[] nums = line.split(" ");
+        int a = Integer.parseInt(nums[0]);
+        int b = Integer.parseInt(nums[1]);
+        filler.update(a, b);
       }
       bufferedReader.close();
+      map = filler.getMap();
       showMap(map);
-      ChunkFiller filler = new ChunkFiller(map, 2, 1);
-      filler.run();
-      showMap(filler.getResult());
+      
     } catch (Exception e){
       System.out.println(e);
     }
   }
-  public static void showMap(Chunk[][] map){
-    for (int y = 0; y < map_height; y++) {
+  public static void showMap(int[][] map){
+    for (int y = 0; y < map_height; y++){ 
       for (int x = 0; x < map_length; x++){
-        int a = map[x][y].getVal();
+        int a = map[x][y];
         switch(a){
           case 0:
             System.out.print("  ");
